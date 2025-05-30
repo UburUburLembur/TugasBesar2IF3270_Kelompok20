@@ -35,7 +35,6 @@ Pastikan Anda telah menginstal perangkat lunak berikut:
 * Python (disarankan versi 3.8 atau lebih baru)
 * pip (Python package installer)
 * Git (untuk mengkloning repository)
-* (Opsional tapi direkomendasikan) Anaconda atau Miniconda untuk manajemen environment.
 
 ### Langkah-langkah Setup
 
@@ -59,7 +58,7 @@ Pastikan Anda telah menginstal perangkat lunak berikut:
     * File bobot model (`.h5`) yang digunakan oleh implementasi custom RNN (dan mungkin juga CNN/LSTM jika Anda memuat bobot yang sudah ada) harus tersedia. Letakkan file bobot di direktori yang sesuai (misalnya `/data/` atau subfolder khusus) dan pastikan path ke file bobot tersebut sudah benar di dalam notebook pengujian.
 
 2.  **Jalankan Jupyter Notebook atau Jupyter Lab:**
-    Dari direktori root proyek (`[nama-repository-proyek]`), jalankan:
+    Dari direktori root proyek (`TugasBesarIF3270_Kelomok20`), jalankan:
     ```bash
     jupyter lab
     ```
@@ -163,19 +162,19 @@ else:
 Berikut adalah pembagian tugas untuk masing-masing anggota kelompok:
 
 
-* **[Muhammad Zakkiy (10122074)]**:
+* **Muhammad Zakkiy (10122074)**:
     * Implementasi dasar Simple RNN dan penulisan bagian Simple RNN di laporan
     * Pembuatan notebook pengujian untuk Simple RNN
     * Eksperiman model RNN
     * Pengelolaan repository GitHub
     
-* **[Ghaisan Zaki Pratama (10122078)]**:
+* **Ghaisan Zaki Pratama (10122078)**:
     * Implementasi dasar CNN dan penulisan bagian CNN di laporan
     * Pembuatan notebook pengujian untuk Simple CNN
     * Eksperimen model CNN
     * Pengelolaan repository GitHub
   
-* **[Fardhan Indrayesa (12821046)]**:
+* **Fardhan Indrayesa (12821046)**:
     * Implementasi dasar LSTM dan penulisan bagian LSTM di laporan
     * Pembuatan notebook pengujian untuk Simple LSTM
     * Eksperimen model LSTM
