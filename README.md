@@ -193,6 +193,81 @@ else:
 ```
 
 #### 3. LSTM / Bidirectional LSTM
+```python
+# Import module
+import gdown
+import pandas as pd
+import numpy as np
+import os
+from model import softmax, batch_array, sequential, lstm, dense, embedding, dropout, bidirectional
+
+# Import dataset
+train = pd.read_csv("https://drive.google.com/uc?id=1RcbaFl6aLCkb5eK2C50KDyUeiC0d7hFQ")
+val = pd.read_csv("https://drive.google.com/uc?id=10-F53KkWv8GAlJuctFvjQxVWES6YHsvA")
+test = pd.read_csv("https://drive.google.com/uc?id=1psAH0ccdyFca0wjSUVuoqTdXCDJSxe0Z")
+
+# Split data input-output
+x_train = train['text']
+y_train = train['label']
+
+x_val = val['text']
+y_val = val['label']
+
+x_test = test['text']
+y_test = test['label']
+
+# Encode output data
+# Encode y label
+le = LabelEncoder()
+y_train_encoded = le.fit_transform(y_train)
+y_val_encoded = le.transform(y_val)
+y_test_encoded = le.transform(y_test)
+
+# Tokenize input data
+max_token = 3000
+seq_len = 80
+
+vectorizer = TextVectorization(max_tokens=max_token, output_sequence_length=seq_len)
+vectorizer.adapt(x_train)
+
+x_train_tokenized = vectorizer(x_train)
+x_val_tokenized = vectorizer(x_val)
+x_test_tokenized = vectorizer(x_test)
+
+# Build model
+batch_size = 24
+features = 64
+units = 128
+rate = 0.4
+
+mod = sequential()
+mod.add(embedding(input_dim=max_token, output_dim=features))
+mod.add(bidirectional(lstm(units=units, return_seq=True)))
+mod.add(bidirectional(lstm(units=int(units*0.7), return_seq=True)))
+mod.add(lstm(units=int(units*0.7), return_seq=True))
+mod.add(dropout(rate=rate))
+mod.add(bidirectional(lstm(units=int(units*0.5), return_seq=True)))
+mod.add(lstm(units=int(units*0.5), return_seq=False))
+mod.add(dropout(rate=rate))
+mod.add(dense(units=3, activation="softmax"))
+
+# Load weights
+mod.get_weights("/content/lstm_src.weights.h5")
+
+# Inference and evaluate model
+# one hot
+ohe = OneHotEncoder()
+y_test_encoded_ohe = ohe.fit_transform(y_test.values.reshape(-1, 1)).toarray()
+
+# prediction
+y_scr = mod.predict(x_test_tokenized)
+
+# F1 score scratch
+metric = F1Score(average="macro")
+metric.update_state(y_test_encoded_ohe, y_scr)
+test_f1 = metric.result().numpy()
+print("Macro F1-score (scratch):", test_f1)  # perfect score: 1
+```
 
 
 ## Pembagian Tugas Tiap Anggota Kelompok
