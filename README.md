@@ -6,13 +6,12 @@ Repository ini berisi implementasi dan analisis berbagai model deep learning yai
 
 Berikut adalah struktur direktori utama dalam repository ini:
 
--   **/data/**: (Opsional) Berisi dataset yang digunakan atau instruksi untuk mendapatkannya. Juga dapat berisi file bobot model (`.h5`) yang telah dilatih sebelumnya.
+-   **/data/**: (Opsional) Berisi dataset yang digunakan atau instruksi untuk mendapatkannya. Juga dapat berisi file bobot model (`.weights.h5`) yang telah dilatih sebelumnya.
 -   **/doc/**: Berisi laporan proyek dalam format `.pdf` yang mencakup seluruh aspek tugas, mulai dari deskripsi persoalan hingga kesimpulan.
 -   **/src/**: Berisi seluruh kode sumber implementasi model dan notebook pengujian.
-    -   **/src/cnn/**: Kode sumber untuk model CNN (`model.py`, `train_cnn.py` (jika ada)).
-    -   **/src/rnn/**: Kode sumber untuk model Simple RNN (`model.py`, `train_rnn.py` (jika ada)).
-    -   **/src/lstm/**: Kode sumber untuk model LSTM (`model.py`, `train_lstm.py` (jika ada)).
-    -   **/src/utils/**: (Opsional) Skrip utilitas, misalnya untuk pemrosesan data atau evaluasi.
+    -   **/src/cnn/**: Kode sumber untuk model CNN.
+    -   **/src/rnn/**: Kode sumber untuk model Simple RNN.
+    -   **/src/lstm/**: Kode sumber untuk model LSTM.
     -   `notebook_pengujian_cnn.ipynb`: Notebook untuk eksperimen dan pengujian model CNN.
     -   `notebook_pengujian_rnn.ipynb`: Notebook untuk eksperimen dan pengujian model Simple RNN.
     -   `notebook_pengujian_lstm.ipynb`: Notebook untuk eksperimen dan pengujian model LSTM.
@@ -170,7 +169,7 @@ Berikut adalah pembagian tugas untuk masing-masing anggota kelompok:
     * Eksperiman model RNN
     * Pengelolaan repository GitHub
     
-* **[Ghaisan Zaki Pratama (10122074)]**:
+* **[Ghaisan Zaki Pratama (10122078)]**:
     * Implementasi dasar CNN dan penulisan bagian CNN di laporan
     * Pembuatan notebook pengujian untuk Simple CNN
     * Eksperimen model CNN
