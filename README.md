@@ -78,6 +78,44 @@ Pastikan Anda telah menginstal perangkat lunak berikut:
 Modul ini memungkinkan Anda untuk membangun model lapisan demi lapisan, memuat bobot yang sudah ada, dan melakukan forward pass.
 
 #### 1. CNN
+```python
+# Cara Menggunakan Modul Forward Propagation Custom - CNN
+
+# 1. Import modul scratch
+from src.cnn.model import CNNFromScratch
+import numpy as np
+
+# 2. Buat konfigurasi arsitektur (harus sesuai model Keras Anda)
+config = {
+    'conv_layers': 3,               # jumlah Conv2D layer
+    'pooling': 'max',               # 'max' atau 'avg'
+    'use_global_avg_pooling': True  # True → head 1×1‐conv + GAP; False → Flatten + Dense
+}
+
+# 3. Inisialisasi dan muat bobot hasil pelatihan Keras
+weights_path = 'checkpoints/conv3_filters_96-192-192_kernel3_pool-max.weights.h5'
+scratch = CNNFromScratch(weights_path, config)
+
+# 4. Siapkan data input (misal 16 sampel CIFAR-10)
+#    * Pastikan sudah dinormalisasi jika model Keras Anda memakai normalisasi
+x_batch_np = x_test[:16].astype('float32')
+
+# 5. Lakukan forward pass untuk mendapatkan probabilitas output
+y_probs = scratch.forward(x_batch_np)  # shape: (16, 10)
+y_pred  = y_probs.argmax(axis=-1)      # prediksi kelas
+
+# 6. (Opsional) Verifikasi dengan model Keras
+keras_model = build_cnn(
+    conv_layers=3,
+    filters=[96,192,192],
+    kernel_size=(3,3),
+    pooling='max',
+    use_global_avg_pooling=True
+)
+keras_model.load_weights(weights_path)
+y_keras = keras_model.predict(x_batch_np).argmax(axis=-1)
+print("Match:", np.all(y_keras == y_pred))
+```
 
 #### 2. Simple RNN / Bidirectional RNN
 
