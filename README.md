@@ -86,7 +86,13 @@ Modul ini memungkinkan Anda untuk membangun model lapisan demi lapisan, memuat b
 Berikut adalah contoh dasar penggunaan modul Simple RNN dari `src.rnn.model` di dalam notebook pengujian Anda:
 
 ```python
-# Di dalam notebook_pengujian_rnn.ipynb (setelah setup sys.path jika perlu)
+# Asumsikan notebook berada di src
+import sys
+import os
+
+project_root_path = os.path.abspath(os.path.join(os.getcwd(), '..'))
+if project_root_path not in sys.path:
+    sys.path.insert(0, project_root_path)
 
 import numpy as np
 # Impor kelas-kelas yang dibutuhkan dari modul custom RNN Anda
